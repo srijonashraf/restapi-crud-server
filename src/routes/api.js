@@ -3,6 +3,7 @@ const ProductsController=require("../controllers/ProductsController")
 const router =express.Router();
 
 
+
 // C=Create
 router.post("/CreateProduct",ProductsController.CreateProduct);
 

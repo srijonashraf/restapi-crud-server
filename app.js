@@ -46,6 +46,7 @@ mongoose.connect(URI,OPTION,(error)=>{
 // Routing Implement
 app.use("/api/v1",router)
 
+app.get('/', (req,res)=> res.json("Server is Running"));
 // Add React Front End Routing
 app.get('*',function (req,res) {
     res.sendFile(path.resolve(__dirname,'client','build','index.html'))
