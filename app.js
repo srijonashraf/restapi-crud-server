@@ -4,6 +4,8 @@ const router =require('./src/routes/api');
 const app= new express();
 const bodyParser =require('body-parser');
 const path= require('path');
+const path2= require('path2');
+
 
 // Security Middleware Lib Import
 const rateLimit =require('express-rate-limit');
