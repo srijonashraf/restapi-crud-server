@@ -4,6 +4,7 @@ const router =require('./src/routes/api');
 const app= new express();
 const bodyParser =require('body-parser');
 const path= require('path');
+require("dotenv").config();
 
 
 // Security Middleware Lib Import
@@ -35,13 +36,19 @@ app.use(limiter)
 
 
 // Mongo DB Database Connection
-let URI="mongodb+srv://<username>:<password>@cluster0.7uslu.mongodb.net/CRUD?retryWrites=true&w=majority";
-let OPTION={user:'testuser7777',pass:'testuser7777',autoIndex:true}
+let URL = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.nakaabb.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`;
+let CONFIG = {
+  user: process.env.USER,
+  pass: process.env.PASS,
+  autoIndex: true,
+};
 
-mongoose.connect(URI,OPTION,(error)=>{
-    console.log("Connection Success")
-    console.log(error)
-})
+try {
+  mongoose.connect(URL, CONFIG);
+  console.log("DB Connected!");
+} catch (err) {
+  console.error(err);
+}
 
 // Routing Implement
 app.use("/api/v1",router)
